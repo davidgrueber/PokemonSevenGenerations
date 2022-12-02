@@ -17,7 +17,7 @@ class pokemon:
         '''
         self.potionCounter = 0
         
-    def attack(self, enemyPokemon):
+    def useAttack(self, enemyPokemon):
         '''
         attack method will be used during the gameplay loop and is a simple
         function that subtracts the health of the enemy pokemon based on the current
@@ -33,7 +33,7 @@ class pokemon:
                                                                                             # rounded to an integer number
                                                                                             
         
-    def potion(self):
+    def usePotion(self):
         '''
         potion method is used to heal the current user's pokemond by 20hp.
         If self.hp is at the maximum health, self.maxhp, the potion will not be used,
