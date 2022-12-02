@@ -1,5 +1,6 @@
 import random as rd
 import copy
+import time
 
 class pokemon:
     def __init__(self):
@@ -51,9 +52,23 @@ class pokemon:
         elif diff < 20: # check if pokemon will exceed maximum health after using potion
             print(f"{self.name} healed {diff} hitpoints!")
             self.hp += self.maxhp - self.hp # only heals the difference to full hp
-            self.potionCounter += 1
+            self.potionCounter += 1 # increases the counter for times the user has used a potion
         else:
             print(f"{self.name} healed 20 hitpoints!")
             self.hp += 20 # increases health by 20 otherwise if health is below thresholds
-            self.potionCounter += 1
-        
+            self.potionCounter += 1 # increases the counter for times the user has used a potion
+            
+    def run(self, enemyPokemon):
+        '''
+        Players can use run if they wish to forfeit the battle.
+        Running this method will break the gameplay loop and announce
+        the enemy player as victorious.
+        Args:
+            enemyPokemon: pokemon class object other than the current user's
+        Returns:
+            None
+        '''
+        print(f"{self.name} has run away") # fleeing 
+        time.sleep(3) # pauses for 3 seconds before printing the next line
+        print(f"{enemyPokemon.name} is victorious!")
+        break # after printing the messages, calls a break to stop the gameplay loop
