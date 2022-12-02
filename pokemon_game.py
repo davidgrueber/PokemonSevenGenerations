@@ -1,9 +1,6 @@
 import numpy as np
 import pandas as pd
 import ipywidgets as widgets
-
-
-from IPython.display import display
 import ipywidgets as widgets
 
 class pokemon:
