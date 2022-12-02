@@ -53,3 +53,28 @@ print(f"Player 2's pokemon has {player2pokemon.attack} attack points")
 #    display(buttons[option])
 #    buttons[option].on_click(on_button_clicked)
 #display(output)
+
+#// let each player choose their pokemon //
+#-- present all pokemon options, raise an error if player 2 chooses the same pokemon as player 1
+
+#// gameplay loop //
+#turn = 0
+#while both pokemon have health:
+#    if turn is even:
+#        player1's turn
+#    if turn is odd:
+#        player2's turn
+#    turn += 1
+#
+#print("game is over")
+#if turn is even, then player 1 is dead?
+#if turn is odd, then player 2 is dead?
+#
+#takeATurn(player):
+#    present user with attack and heal butttons
+#    if attack:
+#        subtract health from enemy player equal to attack damage
+#    if heal:
+#        if pokemon.hp + 20 > maxhealth
+#            raiseException
+#        add 20 health to player's pokemon
