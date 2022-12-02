@@ -1,16 +1,15 @@
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
-
 from PIL import Image
 import requests
-
 import matplotlib.image as mpimg
+import random
 
 pokemonData = pd.read_csv("pokemon.csv")
 pokemonData_png = pd.read_csv("metadata.csv")
 
-pokemonData = pokemonData[['abilities', 'hp', 'name', 'sp_attack', 'sp_defense']]
+pokemonData = pokemonData[['abilities', 'hp', 'name', 'attack', 'defense']]
 pokemonData = pokemonData.apply(lambda x: x.astype(str).str.lower())
 
 pokemonData = pokemonData.sort_values('name')
@@ -18,9 +17,6 @@ pokemonData_png = pokemonData_png.sort_values('filename')
 
 pokemonData.insert(0, 'sprite_url', pokemonData_png['sprite_url'])
 pokemonData = pokemonData.set_index('name')
-
-import matplotlib.image as mpimg
-import random
 
 def display_pokemon(my_poke1, current_hp1, my_poke2, current_hp2):
     
