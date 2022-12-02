@@ -3,6 +3,11 @@ import pandas as pd
 import ipywidgets as widgets
 import ipywidgets as widgets
 
+import pandas as pd
+
+pokemonData = pd.read_csv("pokemon.csv")
+pokemonData = pokemonData[:10]
+
 class pokemon:
     def __init__(self):
         self.name = 'pokemon1'
