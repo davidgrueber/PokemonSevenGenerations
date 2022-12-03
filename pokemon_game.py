@@ -22,9 +22,11 @@ def on_button_clicked(Button, playerNum):
         
 def readPokemonStats(pokemon, name):
     pokemon.name = name
-    pokemon.hp = pokemonData.loc[pokemonData['name'] == name]['hp'].values[0]
+    pokemon.potionCounter = 0
+    pokemon.maxhp = pokemonData.loc[pokemonData['name'] == name]['hp'].values[0]
+    pokemon.hp = pokemon.maxhp
     pokemon.attack = pokemonData.loc[pokemonData['name'] == name]['attack'].values[0]
-    pokemon.defense = pokemonData.loc[pokemonData['name'] == name]['defense'].values[0] 
+    pokemon.defense = pokemonData.loc[pokemonData['name'] == name]['defense'].values[0]    
     
 buttons = [widgets.Button(description = name) for name in pokemonData["name"]]
 outputs = [widgets.Output(), widgets.Output()]
