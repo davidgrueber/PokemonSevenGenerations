@@ -13,7 +13,7 @@ class pokemon:
         Returns: 
             None
         '''
-     
+        
         
     def useAttack(self, enemyPokemon):
         '''
@@ -26,10 +26,13 @@ class pokemon:
         Returns:
             None
         '''
-        enemyPokemon.hp -= round(self.attack-(enemyPokemon.defense/1.5) + rd.randint(-5,5)) # subtracts current pokemon's attack damage from enemy's, 
-                                                                                            # divided by a constant and adds a random integer between -5 and 5
-                                                                                            # rounded to an integer number
-                                                                                            
+        damage = round(self.attack-(enemyPokemon.defense/1.5) + rd.randint(-5,5)) # subtracts current pokemon's attack damage from enemy's, 
+                                                                                  # divided by a constant and adds a random integer between -5 and 5
+                                                                                  # rounded to an integer number
+        enemyPokemon.hp -= damage
+        print(f"{self.name} used attack!.")
+        time.sleep(3)
+        print(f"{enemyPokemon.name} took {damage} damage.")
         
     def usePotion(self):
         '''
@@ -69,4 +72,4 @@ class pokemon:
         print(f"{self.name} has run away") # fleeing 
         time.sleep(3) # pauses for 3 seconds before printing the next line
         print(f"{enemyPokemon.name} is victorious!")
-        break # after printing the messages, calls a break to stop the gameplay loop
+       
