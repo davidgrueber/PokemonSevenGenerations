@@ -8,11 +8,6 @@ import pandas as pd
 pokemonData = pd.read_csv("pokemon.csv")
 pokemonData = pokemonData[:10]
 
-class pokemon:
-    def __init__(self):
-        self.name = 'pokemon1'
-        self.hp = 'health1'
-
 def on_button_clicked(Button, playerNum):
     with outputs[playerNum]:
         print(f"Player {playerNum+1} chose {Button.description}!")
