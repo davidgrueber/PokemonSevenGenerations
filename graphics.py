@@ -19,7 +19,21 @@ pokemonData.insert(0, 'sprite_url', pokemonData_png['sprite_url'])
 pokemonData = pokemonData.set_index('name')
 
 def display_pokemon(my_poke1, current_hp1, my_poke2, current_hp2):
-    
+    '''
+    Displays the competing Pokemon and their HP bars.
+    Args:
+        my_poke1: string with the name of Player 1's Pokemon
+        current_hp1: Player 1's Pokemon's current health (string or int)
+        my_poke2: string with Player 2's Pokemon
+        current_hp2: Player 2's Pokemon's current health (string or int)
+    Returns:
+        None
+    Example:
+        my_poke1: "pikachu"
+        my_poke2: "charizard"
+        Function will display pixelart sprite of Pikachu and Charizard, with an HP bar of their current health
+        Health cannot exceed 255 or fall below 0.
+    '''
     try:
         # set pokemon names to lowercase
         my_poke1 = my_poke1.lower()
