@@ -6,16 +6,14 @@ class pokemon:
     def __init__(self):
         '''
         Creates a class to store pokemon data.
-        Initialised with only 1 attribute, so that running
+        Initialised with no attributes, so that running
         readPokemonStats will import relevant hp, attack, defense, and name attributes.
-        self.potionCounter keeps track of how many potions the player has used, and maxes
-        out at 2 per game.
         Args: 
             None
         Returns: 
             None
         '''
-        self.potionCounter = 0
+     
         
     def useAttack(self, enemyPokemon):
         '''
