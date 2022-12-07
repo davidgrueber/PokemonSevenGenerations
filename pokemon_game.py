@@ -6,6 +6,8 @@ import matplotlib.pyplot as plt
 from PIL import Image
 import requests
 
+import pokemon_class
+
 def display_pokemon(my_poke1, current_hp1, my_poke2, current_hp2):
     '''
     Displays the competing Pokemon and their HP bars.
