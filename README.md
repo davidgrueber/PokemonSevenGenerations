@@ -19,7 +19,8 @@ This includes detailed instructions on how to run it, what output one should exp
 
 
 # (If appropriate) background and source of the dataset.
-
+Sprite images: https://github.com/yaylinda/pokemon-sprite-scraper/blob/master/metadata.csv
+Pokemon data: https://www.kaggle.com/datasets/rounakbanik/pokemon
 
 # (If appropriate) links to any tutorials you used, and at least 3 specific things you implemented that differentiates your project from what’s already in the tutorial.
 
