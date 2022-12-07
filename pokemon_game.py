@@ -2,6 +2,9 @@ import numpy as np
 import pandas as pd
 import matplotlib.image as mpimg
 import random
+import matplotlib.pyplot as plt
+from PIL import Image
+import requests
 
 def display_pokemon(my_poke1, current_hp1, my_poke2, current_hp2):
     '''
