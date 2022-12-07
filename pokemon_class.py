@@ -1,6 +1,5 @@
 import random as rd
 import copy
-import time
 
 class pokemon:
     def __init__(self):
@@ -13,7 +12,7 @@ class pokemon:
         Returns: 
             None
         '''
-        
+     
         
     def useAttack(self, enemyPokemon):
         '''
@@ -26,13 +25,19 @@ class pokemon:
         Returns:
             None
         '''
-        damage = round(self.attack-(enemyPokemon.defense/1.5) + rd.randint(-5,5)) # subtracts current pokemon's attack damage from enemy's, 
-                                                                                  # divided by a constant and adds a random integer between -5 and 5
-                                                                                  # rounded to an integer number
-        enemyPokemon.hp -= damage
-        print(f"{self.name} used attack!.")
-        time.sleep(3)
-        print(f"{enemyPokemon.name} took {damage} damage.")
+        
+        enemy_defense = enemyPokemon.defense*rd.uniform(0.1,0.5)
+        self_attack = self.attack*rd.uniform(0.1,0.7)
+        
+        if enemy_defense > self_attack:
+            self_attack = self.attack*rd.uniform(0.1,0.5)
+        
+        self.damage = round(self_attack - enemy_defense)
+        
+        if self.damage < 0:
+            self.damage = 0
+        
+        enemyPokemon.hp -= self.damage
         
     def usePotion(self):
         '''
@@ -46,16 +51,18 @@ class pokemon:
             None
         '''
         diff = self.maxhp - self.hp # checks the difference between current health and maximum health
-        if self.potionCounter >= 2:
+        if self.potionCounter > 2:
             print("All potions have been used! Select another move!")
+            raise ValueError
         elif self.hp == self.maxhp: # check if pokemon is full health
-            print(f"{self.name} is already full health!")
+            print(f"{self.pokemon_name.upper()} is already full health!")
+            raise ValueError
         elif diff < 20: # check if pokemon will exceed maximum health after using potion
-            print(f"{self.name} healed {diff} hitpoints!")
+            print(f"{self.pokemon_name.upper()} healed {diff} hitpoints!")
             self.hp += self.maxhp - self.hp # only heals the difference to full hp
             self.potionCounter += 1 # increases the counter for times the user has used a potion
         else:
-            print(f"{self.name} healed 20 hitpoints!")
+            print(f"{self.pokemon_name.upper()} healed 20 hitpoints!")
             self.hp += 20 # increases health by 20 otherwise if health is below thresholds
             self.potionCounter += 1 # increases the counter for times the user has used a potion
             
@@ -69,7 +76,5 @@ class pokemon:
         Returns:
             None
         '''
-        print(f"{self.name} has run away") # fleeing 
-        time.sleep(3) # pauses for 3 seconds before printing the next line
-        print(f"{enemyPokemon.name} is victorious!")
-       
+        print(f"{self.pokemon_name.upper()} has run away") # fleeing 
+        print(f"{enemyPokemon.pokemon_name.upper()} is victorious!")
