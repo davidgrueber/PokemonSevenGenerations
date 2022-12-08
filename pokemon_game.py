@@ -156,7 +156,7 @@ def start_battle():
                 print(f"{attackingPokemon.pokemon_name.upper()} dealt {attackingPokemon.damage} damage to {defendingPokemon.pokemon_name.upper()}.")
             elif move == "potion":
                 attackingPokemon.usePotion()
-                print(f"{attackingPokemon.pokemon_name.upper()} has {3 - attackingPokemon.potionCounter} potions left!")
+                print(f"{attackingPokemon.pokemon_name.upper()} used POTION and now has {3 - attackingPokemon.potionCounter} potions left!")
             elif move == "clear output":
                 # clears previous output
                 clear(wait = False)
