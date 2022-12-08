@@ -160,6 +160,7 @@ def start_battle():
             elif move == "clear output":
                 # clears previous output
                 clear(wait = False)
+                display_pokemon(player1pokemon.pokemon_name, player1pokemon.hp, player2pokemon.pokemon_name, player2pokemon.hp)
                 raise ValueError
             else:
                 print("Sorry! Please input a valid move. Your options are run, attack, and potion.")
