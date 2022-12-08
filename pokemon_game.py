@@ -156,7 +156,7 @@ def takeTurn(attackingPokemon, defendingPokemon):
         elif move == "potion":
             attackingPokemon.usePotion()
             print(f"{attackingPokemon.pokemon_name.upper()} has {3 - attackingPokemon.potionCounter} potions left!")
-        elif move == "clear ouptut":
+        elif move == "clear output":
             # clears previous output
             clear(wait = True)
         else:
