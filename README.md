@@ -15,7 +15,8 @@ This includes detailed instructions on how to run it, what output one should exp
 how to run (for now): download zip file of the code, type `import pokemon_game` into jupyterlab or juptyernotebook, and run the line
 
 # Scope and limitations, including ethical implications, accessibility concerns, and ideas for potential extensions.
-
+accessibility concerns: must use JupyterNotebook or JupyterLab to run, and must download files
+ideas for extensions: buttons
 
 # References and acknowledgement.
 
