@@ -7,7 +7,6 @@ from PIL import Image
 import requests
 from pokemon_class import pokemon
 from IPython.display import clear_output as clear
-import time
 
 pokemonData = pd.read_csv("pokemon.csv")
 pokemonData_png = pd.read_csv("metadata.csv")
@@ -34,10 +33,6 @@ def display_pokemon(my_poke1, current_hp1, my_poke2, current_hp2):
         Function will display pixelart sprite of Pikachu and Charizard, with an HP bar of their current health
         Health cannot exceed 255 or fall below 0.
     '''
-    
-    # clears previous output
-    clear(wait = True)
-    
     # set pokemon names to lowercase
     my_poke1 = my_poke1.lower()
     my_poke2 = my_poke2.lower()
@@ -151,7 +146,7 @@ def takeTurn(attackingPokemon, defendingPokemon):
     # COMMENT THIS NONSSNESE:
 
     try:
-        move = input(f"{attackingPokemon.pokemon_name.upper()}, choose your move:\n- run\n- attack\n- potion\n")
+        move = input(f"{attackingPokemon.pokemon_name.upper()}, choose your move:\n- run\n- attack\n- potion\n").lower()
         if move == "run":
             attackingPokemon.run(defendingPokemon)
             raise Exception("Game is over!")
@@ -161,6 +156,9 @@ def takeTurn(attackingPokemon, defendingPokemon):
         elif move == "potion":
             attackingPokemon.usePotion()
             print(f"{attackingPokemon.pokemon_name.upper()} has {3 - attackingPokemon.potionCounter} potions left!")
+        elif move == "clear ouptut":
+            # clears previous output
+            clear(wait = True)
         else:
             print("Sorry! Please input a valid move. Your options are run, attack, and potion.")
             raise ValueError
@@ -199,8 +197,6 @@ while int(player1pokemon.hp) > 0 and int(player2pokemon.hp) > 0:
     else:
         takeTurn(player2pokemon, player1pokemon)
     turn += 1
-    
-    time.sleep(2)
     
 if int(player1pokemon.hp) <= 0:
     print(f"{player1pokemon.pokemon_name.upper()} has fainted! Player 2 won.")
