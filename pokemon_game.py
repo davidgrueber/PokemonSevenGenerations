@@ -158,7 +158,8 @@ def takeTurn(attackingPokemon, defendingPokemon):
             print(f"{attackingPokemon.pokemon_name.upper()} has {3 - attackingPokemon.potionCounter} potions left!")
         elif move == "clear output":
             # clears previous output
-            clear(wait = True)
+            clear(wait = False)
+            raise ValueError
         else:
             print("Sorry! Please input a valid move. Your options are run, attack, and potion.")
             raise ValueError
