@@ -26,18 +26,18 @@ class pokemon:
             None
         '''
         
-        enemy_defense = enemyPokemon.defense*rd.uniform(0.1,0.5)
-        self_attack = self.attack*rd.uniform(0.1,0.7)
+        enemy_defense = enemyPokemon.defense*rd.uniform(0.1,0.5) # defense will be a randomly rolled multiple between 0.1 and 0.5 the pokemon's stats
+        self_attack = self.attack*rd.uniform(0.1,0.7) # damage has a higher roll, between 0.1 and 0.7 to reduce the probability attack < defense
         
-        if enemy_defense > self_attack:
+        if enemy_defense > self_attack: # if defense is higher than attack, attack is less effective and only rolls between 0.1 to 0.5
             self_attack = self.attack*rd.uniform(0.1,0.5)
         
-        self.damage = round(self_attack - enemy_defense)
+        self.damage = round(self_attack - enemy_defense) # final damage inflicted is based on the calculations above
         
-        if self.damage < 0:
+        if self.damage < 0: # damage cannot be negative to prevent healing a pokemon by attacking it
             self.damage = 0
         
-        enemyPokemon.hp -= self.damage
+        enemyPokemon.hp -= self.damage # subtracting the final calculated damage from enemy pokemon's health
         
     def usePotion(self):
         '''
@@ -77,4 +77,4 @@ class pokemon:
             None
         '''
         print(f"{self.pokemon_name.upper()} has run away") # fleeing 
-        print(f"{enemyPokemon.pokemon_name.upper()} is victorious!")
+        print(f"{enemyPokemon.pokemon_name.upper()} is victorious!") # declares enemy victorious after fleeing
