@@ -1,4 +1,6 @@
-# README MARKDOWN: Pokemon Battler
+# README
+
+**Pokémon: Seven Generations**
 
 Contributors: Sarayna Gandhi, David Grueber, Dylan Fox
 
