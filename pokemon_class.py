@@ -1,7 +1,7 @@
 import random as rd
 import copy
 
-class pokemon:
+class pokemon: # class will be used as our basis for the pokemon used in the gameplay loop
     def __init__(self):
         '''
         Creates a class to store pokemon data.
@@ -24,6 +24,12 @@ class pokemon:
             enemyPokemon: pokemon class object other than the current user's
         Returns:
             None
+        Example:
+            print(pokemon1.hp, pokemon2.hp)
+            > 35 45
+            pokemon1.useAttack(pokemon2)
+            print(pokemon1.hp, pokemon2.hp)
+            > 35 38
         '''
         
         enemy_defense = enemyPokemon.defense*rd.uniform(0.1,0.5) # defense will be a randomly rolled multiple between 0.1 and 0.5 the pokemon's stats
@@ -41,7 +47,7 @@ class pokemon:
         
     def usePotion(self):
         '''
-        potion method is used to heal the current user's pokemond by 20hp.
+        potion method is used to heal the current user's pokemon by 20hp.
         If self.hp is at the maximum health, self.maxhp, the potion will not be used,
         and user will be asked for another input. Potion will only heal 20hp or until
         maximum health.
@@ -49,6 +55,12 @@ class pokemon:
             None
         Returns:
             None
+        Example:
+            print(self.hp, self.potionCounter)
+            > 15 0
+            self.usePotion
+            print(self.hp, self.potionCounter)
+            > 35 1
         '''
         diff = self.maxhp - self.hp # checks the difference between current health and maximum health
         if self.potionCounter > 2:
@@ -63,7 +75,7 @@ class pokemon:
             self.potionCounter += 1 # increases the counter for times the user has used a potion
         else:
             print(f"{self.pokemon_name.upper()} healed 20 hitpoints!")
-            self.hp += 20 # increases health by 20 otherwise if health is below thresholds
+            self.hp += 20 # increases health by 20 otherwise if health is below threshold
             self.potionCounter += 1 # increases the counter for times the user has used a potion
             
     def run(self, enemyPokemon):
@@ -75,6 +87,10 @@ class pokemon:
             enemyPokemon: pokemon class object other than the current user's
         Returns:
             None
+        Example:
+            self.run
+            >{self.name} has run away
+            >{enemyPokemon.name} is victorious!
         '''
         print(f"{self.pokemon_name.upper()} has run away") # fleeing 
         print(f"{enemyPokemon.pokemon_name.upper()} is victorious!") # declares enemy victorious after fleeing
