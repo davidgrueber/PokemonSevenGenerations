@@ -8,11 +8,11 @@ import requests
 from pokemon_class import pokemon
 from IPython.display import clear_output as clear
 
-def start_battle():
-    pokemonData = pd.read_csv("pokemon.csv")
-    pokemonData_png = pd.read_csv("metadata.csv")
-    pokemonData = pokemonData[['abilities', 'hp', 'name', 'attack', 'defense']]
-    pokemonData = pokemonData.apply(lambda x: x.astype(str).str.lower())
+def start_battle(): # function call to begin the gameplay loop
+    pokemonData = pd.read_csv("pokemon.csv") # import data for pokemon stats
+    pokemonData_png = pd.read_csv("metadata.csv") # import data for pokemon sprites to be used during display
+    pokemonData = pokemonData[['abilities', 'hp', 'name', 'attack', 'defense']] # only keeping the relevant data columns needed for the game
+    pokemonData = pokemonData.apply(lambda x: x.astype(str).str.lower()) #
     pokemonData = pokemonData.sort_values('name')
     pokemonData_png = pokemonData_png.sort_values('filename')
     pokemonData.insert(0, 'sprite_url', pokemonData_png['sprite_url'])
@@ -113,15 +113,26 @@ def start_battle():
 
     def readPokemonStats(pokemon, pokemon_name):
         """
-        COMMENT THIS with function description, args, return, example
+        Reads data from the pokemonData file into the selected pokemon object to give it the relevant traits during pokemon selection.
+        
+        Args:
+            pokemon: object of class type pokemon which you are importing data into
+            pokemon_name: string which is used to lookup the relevant pokemon in the dataset for indexing
+        Returns:
+            None
+        Example:
+            print(pokemon1.hp)
+            > AttributeError: 'pokemon' object has no attribute 'health'
+            readPokemonStats(pokemon1, 'pikachu')
+            print(pokemon1.health)
+            > 35
         """
-        # COMMENT BELOW HERE TOO
-        pokemon.pokemon_name = pokemon_name
-        pokemon.potionCounter = 0
-        pokemon.maxhp = int(pokemonData.loc[pokemon_name].loc['hp'])
-        pokemon.hp = int(pokemon.maxhp)
-        pokemon.attack = int(pokemonData.loc[pokemon_name].loc['attack'])
-        pokemon.defense = int(pokemonData.loc[pokemon_name].loc['defense'])
+        pokemon.pokemon_name = pokemon_name # name is defined as the inputted string
+        pokemon.potionCounter = 0 # potion counter keeps track of number of potions used in a fight, initialised at 0
+        pokemon.maxhp = int(pokemonData.loc[pokemon_name].loc['hp']) # maxhp is used to track current hp interactions with potions
+        pokemon.hp = int(pokemon.maxhp) # hp is the current hp the pokemon has during the battle
+        pokemon.attack = int(pokemonData.loc[pokemon_name].loc['attack']) # attack is the imported damage the pokemon will deal when attacked
+        pokemon.defense = int(pokemonData.loc[pokemon_name].loc['defense']) # modifier for how much damage the pokemon will receive when being attacked
 
     def takeTurn(attackingPokemon, defendingPokemon):
         '''
@@ -144,44 +155,43 @@ def start_battle():
             Output: "pikachu dealt 20 damage to charmander"
 
         '''
-        # COMMENT THIS NONSSNESE:
 
         try:
-            move = input(f"{attackingPokemon.pokemon_name.upper()}, choose your move:\n- run\n- attack\n- potion\n").lower()
+            move = input(f"{attackingPokemon.pokemon_name.upper()}, choose your move:\n- run\n- attack\n- potion\n").lower() # string asking user to choose move
             if move == "run":
-                attackingPokemon.run(defendingPokemon)
-                raise Exception("Game is over!")
+                attackingPokemon.run(defendingPokemon) # running the run method on the current pokemon
+                raise Exception("Game is over!") # ending the game by raising an Exception 
             elif move == "attack":
-                attackingPokemon.useAttack(defendingPokemon)
-                print(f"{attackingPokemon.pokemon_name.upper()} dealt {attackingPokemon.damage} damage to {defendingPokemon.pokemon_name.upper()}.")
+                attackingPokemon.useAttack(defendingPokemon) # use attack method on the opposing pokemon
+                print(f"{attackingPokemon.pokemon_name.upper()} dealt {attackingPokemon.damage} damage to {defendingPokemon.pokemon_name.upper()}.") # prints the damage dealt
             elif move == "potion":
-                attackingPokemon.usePotion()
-                print(f"{attackingPokemon.pokemon_name.upper()} used POTION and now has {3 - attackingPokemon.potionCounter} potions left!")
+                attackingPokemon.usePotion() # call potion method
+                print(f"{attackingPokemon.pokemon_name.upper()} used POTION and now has {3 - attackingPokemon.potionCounter} potions left!") # prints how many potions are left
             elif move == "clear output":
                 # clears previous output
-                clear(wait = False)
-                display_pokemon(player1pokemon.pokemon_name, player1pokemon.hp, player2pokemon.pokemon_name, player2pokemon.hp)
-                raise ValueError
+                clear(wait = False) # calls clear_output from IPython.display package, this helps with Jupyter notebook and issues with output being truncated by removing all previous outputs
+                display_pokemon(player1pokemon.pokemon_name, player1pokemon.hp, player2pokemon.pokemon_name, player2pokemon.hp) # displays the current status of the game so users can continue
+                raise ValueError # raises error
             else:
-                print("Sorry! Please input a valid move. Your options are run, attack, and potion.")
-                raise ValueError
+                print("Sorry! Please input a valid move. Your options are run, attack, and potion.") # if input is none of the options, raise error
+                raise ValueError # raises error
 
         except ValueError:
-            takeTurn(attackingPokemon, defendingPokemon)
+            takeTurn(attackingPokemon, defendingPokemon) # if ValueError is raised during any input, restarts the current player's turn so their turn isn't skipped
 
-    player1pokemon = pokemon()
+    player1pokemon = pokemon() # initialising 2 pokemon to battle as pokemon objects
     player2pokemon = pokemon()
 
-    while True:
+    while True: # asking Player 1 for an input
         player1pokemon_name = input("Player 1, which Pokemon do you send into battle?\n(If you don't know any, we recommend Charmander, Squirtle, or Bulbasaur!)\n").lower()
 
         try:
-            readPokemonStats(player1pokemon, player1pokemon_name)
+            readPokemonStats(player1pokemon, player1pokemon_name) # imports the relevant pokemon stats based on user 1 input into their pokemon
             break
         except KeyError:
-            print("That Pokemon doesn't exist! Please try again:")
+            print("That Pokemon doesn't exist! Please try again:") # prompts user for another input if the pokemon name they typed is not in the database
 
-    while True:
+    while True: # same as above, but for player 2
         player2pokemon_name = input("Player 2, which Pokemon do you send into battle?\n(If you don't know any, we recommend Chikorita, Cyndaquil, or Totodile!)\n").lower()
 
         try:
@@ -190,20 +200,20 @@ def start_battle():
         except KeyError:
             print("That Pokemon doesn't exist! Please try again:")
 
-    turn = 0
+    turn = 0 # setting a turn counter at 0, which will track if it is player 1 or player 2's turn
 
-    while int(player1pokemon.hp) > 0 and int(player2pokemon.hp) > 0:
-        display_pokemon(player1pokemon.pokemon_name, player1pokemon.hp, player2pokemon.pokemon_name, player2pokemon.hp)
+    while int(player1pokemon.hp) > 0 and int(player2pokemon.hp) > 0: # gameplay loop will continue as long as both pokemon have more thasn 0 health
+        display_pokemon(player1pokemon.pokemon_name, player1pokemon.hp, player2pokemon.pokemon_name, player2pokemon.hp) # displaying the images
 
-        if turn % 2 == 0:
+        if turn % 2 == 0: # player 1 starts and plays during even turns
             takeTurn(player1pokemon, player2pokemon)
         else:
             takeTurn(player2pokemon, player1pokemon)
-        turn += 1
-
-    if int(player1pokemon.hp) <= 0:
-        print(f"{player1pokemon.pokemon_name.upper()} has fainted! Player 2 won.")
-    else:
+        turn += 1 # incrementing the turn counter each loop to alternate player
+    # after loop is over, check both players' pokemon hp
+    if int(player1pokemon.hp) <= 0: # when player 1's pokemon hp is 0, declare player 2 as victorious
+        print(f"{player1pokemon.pokemon_name.upper()} has fainted! Player 2 won.") 
+    else: # otherwise player 1 is victorious
         print(f"{player2pokemon.pokemon_name.upper()} has fainted! Player 1 won.")
 
-    display_pokemon(player1pokemon.pokemon_name, player1pokemon.hp, player2pokemon.pokemon_name, player2pokemon.hp)
+    display_pokemon(player1pokemon.pokemon_name, player1pokemon.hp, player2pokemon.pokemon_name, player2pokemon.hp) # display the final outcome of the game
