@@ -1,7 +1,11 @@
 import random as rd
 import copy
 
-class pokemon: # class will be used as our basis for the pokemon used in the gameplay loop
+class pokemon:
+    '''
+    A simple class that will be used during the gameplay loop to represent the pokemon of each player.
+    During the game, will store information such as hp, defense, and attack to facilitate gampeplay.
+    '''
     def __init__(self):
         '''
         Creates a class to store pokemon data.
