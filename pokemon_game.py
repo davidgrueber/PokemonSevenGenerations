@@ -8,7 +8,20 @@ import requests
 from pokemon_class import pokemon
 from IPython.display import clear_output as clear
 
-def start_battle(): # function call to begin the gameplay loop
+def start_battle(): 
+    '''
+    The overarching function which makes the game run. Contains other functions such that when run it will initiate the start of the
+    gameplay loop that ends when one player is determined victorious.
+    Args:
+        None
+    Returns:
+        None
+    Example:
+        start_battle()
+        > Player 1, which Pokemon do you send into battle?
+        > (If you don't know any, we recommend Charmander, Squirtle, or Bulbasaur!)
+        > {rest of gameplay}...
+    '''
     pokemonData = pd.read_csv("pokemon.csv") # import data for pokemon stats
     pokemonData_png = pd.read_csv("metadata.csv") # import data for pokemon sprites to be used during display
     pokemonData = pokemonData[['abilities', 'hp', 'name', 'attack', 'defense']] # only keeping the relevant data columns needed for the game
