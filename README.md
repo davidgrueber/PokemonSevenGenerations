@@ -7,7 +7,7 @@ Contributors: Sarayna Gandhi, David Grueber, Dylan Fox
 # Game Description
 Two players choose any Pokemon or its evolution from all seven generations (as included in Kaggle's "The Complete Pokemon Dataset"), then engage in a turn-based battle against each other. On any given turn, a player may run away (quit), use a healing potion to add 20 health, or attack the opposing player's Pokemon. An attacking Pokemon attempts to deal damage to a defending Pokemon equal to its basic attack value times a random multiplier between .1 and .7; the defending Pokemon successfully defends an amount of damage equal to its basic defense value times a random multiplier between .1 and .5, to ensure the game is engaging and not entirely pre-determined by choice of Pokemon. The game ends when a Pokemon either runs away (i.e. quits) or makes it to zero health points.
 
-# List of Python packages used and their versions (e.g. numpy 1.21.5). 
+# Python packages used and their versions
 - numpy version 1.21.5
 - pandas version 1.4.2
 - PIL version 9.3.0
@@ -27,13 +27,13 @@ Once the player makes an input, the game prints an image of each Pokemon and the
 
 The game will repeat the above process, continually prompting a player for an input and printing the appropriate health bar changes (and Pokemon images) until a Pokemon either dies or runs away.
 
-# Scope and limitations, including ethical implications, accessibility concerns, and ideas for potential extensions.
+# Scope and limitations
 The scope of this project was to implement a basic Pokemon battler using "real" data on Pokemon, published online. This game can be used for entertainment/nostalgia purposes, as it was designed to mimic old Nintendo games, or even as an educational tool to demonstrate introductory computer programming principles (and also Python syntax), such as inheritance and control flow constructions. Since we don't plan on commercializing, and this project was created for educational purposes, we believe it is ethical to publish it for the public to examine and use. On a conceptual level, our Pokemon game is the same as these old Nintendo games--a 1v1 turn-based battle. However, in the actual implementation of our game, it is much simpler than the Nintendo games of old: each player chooses only one Pokemon, instead of three; each Pokemon is equally effective against Pokemon of all types, instead of being especially powerful against or vulnerable to certain Pokemon types; and each Pokemon has one attack option, instead of multiple attacks each with different potetial abilities. Each of these features present good opportunities for potential extensions of our game. We would also like to implement clickable buttons in place of the default Python input() text box. In terms of accessibility, the one major barier to playing our game is that it must be run on JupyterNotebook or JupyterLab (and the zip file must be downloaded, of course). It can be used for free, and doesn't require any previous knowledge of Pokemon or of Python to play.
 
 # References and acknowledgement.
 We would like to acknowledge Nintendo for many years of entertainment! We would also like to acknowledge the Python Maraton YouTube channel, whose video (at https://www.youtube.com/watch?v=Pbs6jQZrZA4) we watched for inspiration. No code was copied or otherwise taken from their video. We would also like to thank Professor Harlin Lee and our TAs for their patient and inspiring teaching!
 
-# (If appropriate) background and source of the dataset.
+# Background and source of the dataset.
 Sprite images: https://github.com/yaylinda/pokemon-sprite-scraper/blob/master/metadata.csv
 
 Pokemon data: https://www.kaggle.com/datasets/rounakbanik/pokemon
